@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkopengarlic_site=self.webpackChunkopengarlic_site||[]).push([[7631],{3701:e=>{e.exports=JSON.parse('{"categoryGeneratedIndex":{"title":"Creating a Game","slug":"/category/tutorial","permalink":"/docs/category/tutorial","sidebar":"tutorialSidebar","navigation":{"next":{"title":"Components","permalink":"/docs/category/components"}}}}')}}]);
