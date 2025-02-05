@@ -1,28 +1,40 @@
-name: Deploy to Github Pages
+name: GitHub Pages
 
 on:
   push:
     branches:
       - main
+  pull_request:
 
 jobs:
   deploy:
-    name: Deploy to Github Pages
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4.2.0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: latest
-          cache: npm
+          node-version: '24'
 
-      - name: Install dependencies
-        run: npm ci
-      - name: Build website
-        run: npm run build
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-      - name: Deploy to Github Pages
+      - run: npm ci
+      - run: npm run build
+
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
