@@ -11,9 +11,9 @@
  */
 const MyGameMode = (props) => {
 
-    /**
-     * Game Logic Here
-     */
+	/**
+	 * Game Logic Here
+	 */
 
 	// Default events you need to implement
 	const events = {
@@ -54,12 +54,12 @@ const MyGameMode = (props) => {
 		}
 	}, []);
 
-    return (
-        <>
-        {props.gameScreen === 0 && <Screen0 {...props} />}
-        {props.gameScreen === 1 && <Screen1 {...props} />}
-        </>
-    )
+	return (
+		<>
+		{props.gameScreen === 0 && <Screen0 {...props} />}
+		{props.gameScreen === 1 && <Screen1 {...props} />}
+		</>
+	)
 }
 
 export default MyGameMode;
@@ -70,7 +70,7 @@ export default MyGameMode;
 export const title = 'MyGameMode';
 export const description = 'My mode plays like this...';
 export const settings = {
-    // See below
+	// See below
 }
 ```
 
@@ -155,64 +155,64 @@ Game Mode Components receive the following props.
 ```ts
 // Game Lobby properties
 {
-code:string,           // The lobby code
+code:string,		   // The lobby code
 
-owner:string,          // Name of the player that owns the lobby
+owner:string,		  // Name of the player that owns the lobby
 
-status:string,         // LobbyStatus Constants:
-                       // OPEN - Players are in the lobby waiting for game to start
-                       // STARTED - The game has been started. No new players allowed.
-                       // GAME - The game has ended
+status:string,		 // LobbyStatus Constants:
+					   // OPEN - Players are in the lobby waiting for game to start
+					   // STARTED - The game has been started. No new players allowed.
+					   // GAME - The game has ended
 
-appScreen:string,      // AppScreen Constants:
-                       // LOGIN - The login screen
-                       // LOBBY - The lobby screen
-                       // GAME  - This screen is what shows while a game is being played.
+appScreen:string,	  // AppScreen Constants:
+					   // LOGIN - The login screen
+					   // LOBBY - The lobby screen
+					   // GAME  - This screen is what shows while a game is being played.
 
-gameScreen:number,     // Automatically increments by 1 for each game screen.
-                       // (So you can track what screen to show)
+gameScreen:number,	 // Automatically increments by 1 for each game screen.
+					   // (So you can track what screen to show)
 
-round:number,          // Automatically increments by 1 for each round of the game.
-                       // Currently Not implemented
+round:number,		  // Automatically increments by 1 for each round of the game.
+					   // Currently Not implemented
 
-mode:string,           // The title of the game mode. This is set in your game component.
+mode:string,		   // The title of the game mode. This is set in your game component.
 
-settings:object,       // This is the json object of options available to your game mode.
-                       // You must configure the predefined settings. You may add any others you want.
-                       // Predefined settings:
-                       // maxPlayers:number   - The maximum number of players allowed.
-                       // groupSize:number    - Required group amount.
-                       //                        (Groups of 2: 2, Groups of 3: 3, etc.)
-                       //                        (This is not currently implemented)
-                       // time:number         - Per game screen timer in seconds.
-                       //                        (0 = infinite)
-                       //                        (This is not currently implemented)
+settings:object,	   // This is the json object of options available to your game mode.
+					   // You must configure the predefined settings. You may add any others you want.
+					   // Predefined settings:
+					   // maxPlayers:number   - The maximum number of players allowed.
+					   // groupSize:number	- Required group amount.
+					   //						(Groups of 2: 2, Groups of 3: 3, etc.)
+					   //						(This is not currently implemented)
+					   // time:number		 - Per game screen timer in seconds.
+					   //						(0 = infinite)
+					   //						(This is not currently implemented)
 
 players:Array<object>, // List of players in the game and their info
-                       // Each player has the following properties
-                       // name:string      - The name of the player
-                       // owner:boolean    - Flag of lobby ownership
-                       // status:string    - PlayerStatus Constant
-                       //                    ACTIVE        - Player is ready
-                       //                    DONE          - Player has pressed done
-                       // connected:string - ConnectionStatus Constant
-                       //                    CONNECTED     - Player is connected
-                       //                    DISCONNECTED  - Player is disconnected
+					   // Each player has the following properties
+					   // name:string	  - The name of the player
+					   // owner:boolean	- Flag of lobby ownership
+					   // status:string	- PlayerStatus Constant
+					   //					ACTIVE		- Player is ready
+					   //					DONE		  - Player has pressed done
+					   // connected:string - ConnectionStatus Constant
+					   //					CONNECTED	 - Player is connected
+					   //					DISCONNECTED  - Player is disconnected
 
 // Other properties
-socket:object,          // The websocket to emit/listen for custom events
-playerName:string,      // Name of the the player
+socket:object,		  // The websocket to emit/listen for custom events
+playerName:string,	  // Name of the the player
 
-lobbyData:object,       // Json data store that can be used to store images, text, etc
-                        // Formatting is completely up to the game mode
+lobbyData:object,	   // Json data store that can be used to store images, text, etc
+						// Formatting is completely up to the game mode
 
-onGameEnd:function,     // Callback to fire when you want the game to end
+onGameEnd:function,	 // Callback to fire when you want the game to end
 
-onRoundEnd:function,     // Callback to fire when you want the round to end (Not yet implemented)
+onRoundEnd:function,	 // Callback to fire when you want the round to end (Not yet implemented)
 
-onDone:function(data:object),    // Callback to fire when you want to mark a player as done
-                                 // data:object    - Data to save in the lobbyData storage
+onDone:function(data:object),	// Callback to fire when you want to mark a player as done
+								 // data:object	- Data to save in the lobbyData storage
 
-onQuit:function(),       // Callback to fire when a player quits the lobby
+onQuit:function(),	   // Callback to fire when a player quits the lobby
 }
 ```

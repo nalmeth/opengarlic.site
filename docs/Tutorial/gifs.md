@@ -116,37 +116,37 @@ export const generateFrames = async (lobbyCode, playerName, outputDir) => {
 
 After your frames have been generated, the GIF will be automatically built
 from the frames and saved as *username.gif* in the same directory. This will
-then be converted to via into a data URL. This is then passed to the front-end
+then be converted into a data URL. This is then passed to the front-end
 in the 'GIFCreated' event. You can listen to this event on your end screen to
 receive the image and start the download.
 
 ```ts title="client/src/components/screens/MyEndGame.js"
 const events = {
-		GIFCreated: (data, filename) => {
-			console.log('GIF Created');
-			setGifButtonDisabled(false);
-			let link = document.createElement('a');
-			link.href = data;
-			link.download = filename;
-			link.style = 'display:none';
-			document.body.appendChild(link);
-			link.click();
-			document.body.removeChild(link);
-		}
-	};
+	GIFCreated: (data, filename) => {
+		console.log('GIF Created');
+		setGifButtonDisabled(false);
+		let link = document.createElement('a');
+		link.href = data;
+		link.download = filename;
+		link.style = 'display:none';
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
+	}
+};
 
-	useEffect(() => {
+useEffect(() => {
+	for(const name in events) {
+		socket.on(name, events[name]);
+	}
+
+	return () => {
 		for(const name in events) {
-			socket.on(name, events[name]);
+			socket.off(name, events[name]);
 		}
-
-		return () => {
-			for(const name in events) {
-				socket.off(name, events[name]);
-			}
-		}
-		// eslint-disable-next-line
-	}, []);
+	}
+	// eslint-disable-next-line
+}, []);
 ```
 
 ## Import your maker

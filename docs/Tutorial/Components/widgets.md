@@ -11,11 +11,11 @@
  * Widget 0
  */
 const Widget0 = (props) => {
-    return (
-        <>
-            <Typography>Hello from Widget 0.</Typography>
-        </>
-    )
+	return (
+		<>
+			<Typography>Hello from Widget 0.</Typography>
+		</>
+	)
 }
 
 export default Widget0;

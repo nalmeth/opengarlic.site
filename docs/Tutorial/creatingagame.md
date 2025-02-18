@@ -14,9 +14,9 @@ import * as MyGameMode from '../components/games/MyGameMode'; // Add your game m
 
 
 const Games = [
-    Standard,
-    // ...
-    MyGameMode // Add your game mode to the list
+	Standard,
+	// ...
+	MyGameMode // Add your game mode to the list
 ];
 
 export default Games;

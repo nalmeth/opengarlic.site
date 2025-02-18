@@ -12,15 +12,15 @@
  * Screen 0
  */
 const Screen0 = (props) => {
-    /**
-     * Screen specific logic
-     */
-    return (
-        <>
-            <Widget0 {...props} />
-            <Widget1 {...props} />
-        </>
-    )
+	/**
+	 * Screen specific logic
+	 */
+	return (
+		<>
+			<Widget0 {...props} />
+			<Widget1 {...props} />
+		</>
+	)
 }
 
 export default Screen0;

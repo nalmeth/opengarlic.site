@@ -11,9 +11,9 @@ To generate certs for localhost, run the openssl command below. Use the premade 
 
 ```bash
 openssl req -x509 -nodes -newkey rsa:4096 -sha256 -days 1 \
-    -keyout client/cert/local.privkey.pem \
-    -out client/cert/local.fullchain.pem \
-    -subj '/CN=localhost' -extensions EXT -config client/cert/localcert.conf
+	-keyout client/cert/local.privkey.pem \
+	-out client/cert/local.fullchain.pem \
+	-subj '/CN=localhost' -extensions EXT -config client/cert/localcert.conf
 ```
 
 :::caution
